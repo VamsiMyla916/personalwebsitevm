@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vamsi Krishna Sai Myla | AI Systems Architect</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="toast">Copied to clipboard!</div>
+
+    <nav>
+      <div class="logo">Vamsi<span>.AI</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#trends">Insights</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <h1>Vamsi Krishna Sai Myla</h1>
+        <h2>AI Solutions Engineer & Systems Architect</h2>
+        <p>
+          I bridge the gap between <b>Rapid Prototyping</b> and
+          <b>Production Systems</b>. Specializing in GenAI, RAG pipelines, and
+          end-to-end full-stack engineering.
+        </p>
+
+        <div class="btn-group">
+          <a href="#contact" class="btn">Get in Touch</a>
+          <a
+            href="https://github.com/VamsiMyla916"
+            target="_blank"
+            class="btn-outline"
+          >
+            <i class="fab fa-github"></i> GitHub
+          </a>
+        </div>
+
+        <div class="accordion">
+          <details>
+            <summary>Professional Summary</summary>
+            <div class="detail-content">
+              With an MSCS '25 and background in Reliability Engineering, I
+              architect full-stack AI applications 3x faster than traditional
+              cycles. I treat infrastructure as code and prompt engineering as a
+              precise science.
+            </div>
+          </details>
+
+          <details>
+            <summary>Education</summary>
+            <div class="detail-content">
+              <strong>M.S. Computer Science</strong><br />
+              Portland State University (2025)<br />
+              GPA: 3.91/4.00
+              <br /><br />
+              <strong>B.E. Computer Science</strong><br />
+              KL University (2020)
+            </div>
+          </details>
+
+          <details>
+            <summary>Core Skills</summary>
+            <div class="detail-content">
+              <strong>AI/ML:</strong> RAG, LangChain, FAISS, Hugging Face,
+              Llama/Gemma<br />
+              <strong>Backend:</strong> Python, FastAPI, Docker, SQL<br />
+              <strong>Systems:</strong> AWS, API Design, Microservices, CI/CD
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="hero-image-container">
+        <img
+          src="{{ url_for('static', path='/vamsimyla.jpg') }}"
+          alt="Vamsi Myla"
+          class="profile-pic"
+          onerror="this.src='https://via.placeholder.com/400/3b82f6/ffffff?text=Vamsi+Myla'"
+        />
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <div class="line"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="video-placeholder"><i class="fas fa-robot"></i></div>
+          <div class="card-content">
+            <h3>RAG Chatbot Agent</h3>
+            <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
+              Agentic workflow for business intelligence using local LLMs.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/VamsiMyla916/RAG-chatbot-streamlit"
+                target="_blank"
+                class="link-btn"
+                ><i class="fas fa-code"></i> Code</a
+              >
+              <a
+                href="javascript:void(0)"
+                onclick="alert('Live demo deployment in progress!')"
+                target="_blank"
+                class="link-btn secondary"
+              >
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="video-placeholder"><i class="fas fa-eye"></i></div>
+          <div class="card-content">
+            <h3>Real-Time CV API</h3>
+            <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
+              Decoupled FastAPI backend for high-load computer vision.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/VamsiMyla916/cv-api"
+                target="_blank"
+                class="link-btn"
+                ><i class="fas fa-code"></i> Code</a
+              >
+              <a
+                href="javascript:void(0)"
+                onclick="alert('Live demo deployment in progress!')"
+                target="_blank"
+                class="link-btn secondary"
+              >
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="video-placeholder"><i class="fas fa-chart-line"></i></div>
+          <div class="card-content">
+            <h3>Data Storyteller</h3>
+            <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
+              GenAI analytics converting CSVs into narrative insights.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/VamsiMyla916/csv-data-story-teller"
+                target="_blank"
+                class="link-btn"
+                ><i class="fas fa-code"></i> Code</a
+              >
+              <a
+                href="javascript:void(0)"
+                onclick="alert('Live demo deployment in progress!')"
+                target="_blank"
+                class="link-btn secondary"
+              >
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trends">
+      <div class="section-header">
+        <h2>Industry Pulse</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="trends-layout">
+        <div>
+          <h3 class="sub-header">Editor's Choice</h3>
+          {% for item in pinned_list %}
+          <div
+            class="pinned-item"
+            onclick="window.open('{{ item.link }}', '_blank')"
+          >
+            <div style="font-size: 1.5rem">
+              {% if item.type == 'video' %}<i
+                class="fab fa-youtube"
+                style="color: #ef4444"
+              ></i
+              >{% else %}<i
+                class="fas fa-book-reader"
+                style="color: var(--accent)"
+              ></i
+              >{% endif %}
+            </div>
+            <div>
+              <div style="font-weight: 600">{{ item.title }}</div>
+              <div style="font-size: 0.8rem; color: #888">
+                {{ item.source }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div>
+          <h3 class="sub-header">Live Feed (TechCrunch)</h3>
+          <div class="live-scroll-box">
+            {% for item in news_list %}
+            <div
+              class="live-feed-item"
+              onclick="window.open('{{ item.link }}', '_blank')"
+            >
+              <div style="font-size: 0.95rem; margin-bottom: 0.3rem">
+                {{ item.title }}
+              </div>
+              <div style="font-size: 0.75rem; color: var(--accent)">
+                {{ item.source }} • {{ item.pubDate }}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <h2>Let's Connect</h2>
+        <div class="line"></div>
+      </div>
+      <div class="contact-container">
+        <div
+          class="contact-box"
+          onclick="copyToClipboard('mylavamsikrishnasai@gmail.com', 'Email copied!')"
+        >
+          <i class="fas fa-envelope"></i><span>Email Me</span>
+        </div>
+        <a
+          href="https://www.linkedin.com/in/vamsimyla"
+          target="_blank"
+          class="contact-box"
+        >
+          <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+        </a>
+        <div
+          class="contact-box"
+          onclick="copyToClipboard('503-791-6338', 'Phone number copied!')"
+        >
+          <i class="fas fa-phone"></i><span>Call Me</span>
+        </div>
+        <a
+          href="https://maps.google.com/?q=Portland,+OR"
+          target="_blank"
+          class="contact-box"
+        >
+          <i class="fas fa-map-marker-alt"></i><span>Portland, OR</span>
+        </a>
+      </div>
+      <div
+        style="
+          text-align: center;
+          margin-top: 4rem;
+          color: #555;
+          font-size: 0.8rem;
+        "
+      >
+        © 2025 Vamsi Krishna Sai Myla
+      </div>
+    </section>
+
+    <script>
+      function copyToClipboard(text, msg) {
+        navigator.clipboard.writeText(text).then(() => showToast(msg));
+      }
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.innerText = msg;
+        t.className = "show";
+        setTimeout(() => (t.className = t.className.replace("show", "")), 3000);
+      }
+
+      // Background Animation
+      const canvas = document.getElementById("bg-canvas");
+      const ctx = canvas.getContext("2d");
+      let w,
+        h,
+        p = [];
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+      for (let i = 0; i < 40; i++)
+        p.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: Math.random() - 0.5,
+          vy: Math.random() - 0.5,
+        });
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#3b82f6";
+        p.forEach((pt, i) => {
+          pt.x += pt.vx;
+          pt.y += pt.vy;
+          if (pt.x < 0 || pt.x > w) pt.vx *= -1;
+          if (pt.y < 0 || pt.y > h) pt.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+          p.slice(i + 1).forEach((pt2) => {
+            if (Math.hypot(pt.x - pt2.x, pt.y - pt2.y) < 150) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(59,130,246,0.15)`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(pt.x, pt.y);
+              ctx.lineTo(pt2.x, pt2.y);
+              ctx.stroke();
+            }
+          });
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    </script>
+  </body>
+</html>
