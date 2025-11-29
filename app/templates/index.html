@@ -4,11 +4,450 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vamsi Krishna Sai Myla | AI Systems Architect</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <style>
+      /* --- GLOBAL --- */
+      :root {
+        --bg-color: #0a0a0a;
+        --text-primary: #ffffff;
+        --text-secondary: #a1a1aa;
+        --accent: #3b82f6; /* Electric Blue */
+        --accent-hover: #2563eb;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(255, 255, 255, 0.1);
+        --font-main: "Inter", system-ui, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-main);
+        background: var(--bg-color);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      /* UTILS */
+      section {
+        padding: 5rem 8%;
+        position: relative;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .line {
+        width: 50px;
+        height: 3px;
+        background: var(--accent);
+        margin-bottom: 3rem;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem 5%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+        border-bottom: 1px solid var(--card-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+      .logo span {
+        color: var(--accent);
+      }
+      .nav-links a {
+        margin-left: 2rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        min-height: 85vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4rem;
+        margin-top: 60px;
+        padding-left: 8%;
+        padding-right: 8%;
+        width: 100%;
+      }
+
+      .hero-content {
+        text-align: left;
+        max-width: 600px;
+        flex: 1;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+        text-align: left;
+      }
+      .hero h2 {
+        font-size: 1.1rem;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: left;
+      }
+      .hero p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        text-align: left;
+      }
+
+      .hero-image-container {
+        flex: 0 0 auto;
+      }
+      .profile-pic {
+        width: 250px;
+        height: 250px;
+        border-radius: 12px;
+        border: 1px solid var(--card-border);
+        object-fit: cover;
+        box-shadow: 15px 15px 0px rgba(59, 130, 246, 0.1);
+        transition: 0.3s;
+      }
+      .profile-pic:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 20px 20px 0px rgba(59, 130, 246, 0.2);
+      }
+
+      /* BUTTONS */
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        justify-content: flex-start;
+      }
+      .btn {
+        padding: 0.6rem 1.5rem;
+        border-radius: 6px;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: 0.2s;
+        border: 1px solid var(--accent);
+      }
+      .btn:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+      }
+      .btn-outline {
+        padding: 0.6rem 1.5rem;
+        border-radius: 6px;
+        background: transparent;
+        border: 1px solid var(--text-secondary);
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--text-primary);
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      /* ACCORDION */
+      .accordion {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: left;
+      }
+      details {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 6px;
+        margin-bottom: 0.8rem;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+      details[open] {
+        border-color: var(--accent);
+      }
+      summary {
+        padding: 0.8rem 1.2rem;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 0.95rem;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        font-size: 1.2rem;
+        color: var(--accent);
+      }
+      details[open] summary::after {
+        content: "-";
+      }
+      .detail-content {
+        padding: 1rem 1.2rem;
+        border-top: 1px solid var(--card-border);
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        text-align: left;
+      }
+      .detail-content strong {
+        color: var(--text-primary);
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+      .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: 0.3s;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+
+      .project-thumb {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 1px solid var(--card-border);
+        transition: 0.3s;
+      }
+      .project-card:hover .project-thumb {
+        transform: scale(1.05);
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 2;
+        background: var(--bg-color);
+      } /* Ensure text sits on top */
+      .card-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .link-btn {
+        font-size: 0.85rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .link-btn.secondary {
+        color: var(--text-secondary);
+      }
+      .link-btn:hover {
+        text-decoration: underline;
+      }
+
+      /* TRENDS LAYOUT */
+      .trends-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 2rem;
+      }
+      .pinned-item {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: 0.2s;
+      }
+      .pinned-item:hover {
+        border-color: var(--accent);
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .sub-header {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .live-scroll-box {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 1rem;
+        border-radius: 8px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+      .live-feed-item {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .live-feed-item:hover {
+        padding-left: 0.5rem;
+        border-color: var(--accent);
+      }
+
+      /* CONTACT */
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      .contact-box {
+        background: var(--card-bg);
+        padding: 1.5rem 2rem;
+        border-radius: 8px;
+        border: 1px solid var(--card-border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 180px;
+        color: white;
+        text-decoration: none;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+      .contact-box:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+
+      /* MOBILE */
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column-reverse;
+          justify-content: center;
+          text-align: center;
+          gap: 2rem;
+          padding-top: 2rem;
+        }
+        .hero-content {
+          text-align: center;
+          width: 100%;
+        }
+        .hero h1,
+        .hero h2,
+        .hero p {
+          text-align: center;
+        }
+        .btn-group {
+          justify-content: center;
+        }
+        .hero-image-container {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+        .profile-pic {
+          width: 180px;
+          height: 180px;
+        }
+        .trends-layout {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* BG & TOAST */
+      #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      #toast {
+        visibility: hidden;
+        min-width: 250px;
+        background-color: var(--accent);
+        color: #fff;
+        text-align: center;
+        border-radius: 4px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1000;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      #toast.show {
+        visibility: visible;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      @keyframes fadein {
+        from {
+          bottom: 0;
+          opacity: 0;
+        }
+        to {
+          bottom: 30px;
+          opacity: 1;
+        }
+      }
+      @keyframes fadeout {
+        from {
+          bottom: 30px;
+          opacity: 1;
+        }
+        to {
+          bottom: 0;
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="toast">Copied to clipboard!</div>
@@ -83,7 +522,7 @@
 
       <div class="hero-image-container">
         <img
-          src="{{ url_for('static', path='/vamsimyla.jpg') }}"
+          src="{{ url_for('static', path='/profile.jpg') }}"
           alt="Vamsi Myla"
           class="profile-pic"
           onerror="this.src='https://via.placeholder.com/400/3b82f6/ffffff?text=Vamsi+Myla'"
@@ -98,7 +537,12 @@
       </div>
       <div class="projects-grid">
         <div class="project-card">
-          <div class="video-placeholder"><i class="fas fa-robot"></i></div>
+          <img
+            src="{{ url_for('static', path='/project_rag.jpg') }}"
+            alt="RAG Chatbot"
+            class="project-thumb"
+            onerror="this.src='https://via.placeholder.com/400x200/000000/ffffff?text=RAG+Chatbot'"
+          />
           <div class="card-content">
             <h3>RAG Chatbot Agent</h3>
             <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
@@ -112,8 +556,7 @@
                 ><i class="fas fa-code"></i> Code</a
               >
               <a
-                href="javascript:void(0)"
-                onclick="alert('Live demo deployment in progress!')"
+                href="https://your-chatbot-app.streamlit.app"
                 target="_blank"
                 class="link-btn secondary"
               >
@@ -124,7 +567,12 @@
         </div>
 
         <div class="project-card">
-          <div class="video-placeholder"><i class="fas fa-eye"></i></div>
+          <img
+            src="{{ url_for('static', path='/project_cv.jpg') }}"
+            alt="CV API"
+            class="project-thumb"
+            onerror="this.src='https://via.placeholder.com/400x200/000000/ffffff?text=CV+API'"
+          />
           <div class="card-content">
             <h3>Real-Time CV API</h3>
             <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
@@ -138,8 +586,7 @@
                 ><i class="fas fa-code"></i> Code</a
               >
               <a
-                href="javascript:void(0)"
-                onclick="alert('Live demo deployment in progress!')"
+                href="https://your-cv-api.com"
                 target="_blank"
                 class="link-btn secondary"
               >
@@ -150,7 +597,12 @@
         </div>
 
         <div class="project-card">
-          <div class="video-placeholder"><i class="fas fa-chart-line"></i></div>
+          <img
+            src="{{ url_for('static', path='/project_data.jpg') }}"
+            alt="Data Storyteller"
+            class="project-thumb"
+            onerror="this.src='https://via.placeholder.com/400x200/000000/ffffff?text=Data+Storyteller'"
+          />
           <div class="card-content">
             <h3>Data Storyteller</h3>
             <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 1rem">
@@ -164,8 +616,7 @@
                 ><i class="fas fa-code"></i> Code</a
               >
               <a
-                href="javascript:void(0)"
-                onclick="alert('Live demo deployment in progress!')"
+                href="https://your-data-storyteller.streamlit.app"
                 target="_blank"
                 class="link-btn secondary"
               >

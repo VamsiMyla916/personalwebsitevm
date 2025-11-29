@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -7,11 +8,29 @@ import asyncio
 
 app = FastAPI()
 
-# Mount Static Files and Templates
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="app/templates")
+# --- ROBUST PATH FINDER ---
+# Get the folder where this main.py file is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# --- 1. PINNED CONTENT (MANAGE YOUR FAVORITES HERE) ---
+# Logic: Check if 'static' is next to main.py, OR one folder up
+if os.path.exists(os.path.join(script_dir, "static")):
+    # Standard: app/static/
+    static_abs_path = os.path.join(script_dir, "static")
+    templates_abs_path = os.path.join(script_dir, "templates")
+else:
+    # Fallback: maybe static is in the root folder?
+    parent_dir = os.path.dirname(script_dir)
+    static_abs_path = os.path.join(parent_dir, "static")
+    templates_abs_path = os.path.join(parent_dir, "templates")
+
+print(f"✅ LOADING FILES FROM: {static_abs_path}")
+
+# Mount the folders we found
+app.mount("/static", StaticFiles(directory=static_abs_path), name="static")
+templates = Jinja2Templates(directory=templates_abs_path)
+
+
+# --- 1. PINNED CONTENT ---
 pinned_items = [
     {
         "type": "video",
@@ -33,7 +52,7 @@ pinned_items = [
     }
 ]
 
-# --- 2. LIVE NEWS FETCHER (TECHCRUNCH & VERGE) ---
+# --- 2. LIVE NEWS FETCHER ---
 async def get_latest_trends():
     rss_urls = [
         "https://api.rss2json.com/v1/api.json?rss_url=https://techcrunch.com/feed/",
@@ -50,7 +69,7 @@ async def get_latest_trends():
         for response in responses:
             if not isinstance(response, Exception) and response.status_code == 200:
                 data = response.json()
-                items = data.get("items", [])[:5] # Take top 5 from each
+                items = data.get("items", [])[:5] 
                 for item in items:
                     news_items.append({
                         "title": item.get("title"),
